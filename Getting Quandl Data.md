@@ -13,6 +13,15 @@ Getting Quandl Data
           return new SessionOptions(this);
         }
   * TabularResult tabularResult = session.getDataSet(DataSetRequest.Builder.of("ZILL/N03346_A").build());
+    * DataSetRequest.Builder.of("ZILL/N03346_A").build();
+      * public static Builder of(final String quandlCode) {
+          ArgumentChecker.notNull(quandlCode, "quandlCode");
+          return new Builder(quandlCode);
+        }
+      * public DataSetRequest build() {
+          return new DataSetRequest(this);
+        }
+    // DataSetRequest is holding "ZILL/N03346_A" ^^^
     * public TabularResult getDataSet(final DataSetRequest request) {
         ArgumentChecker.notNull(request, "request");
 
@@ -38,3 +47,7 @@ Getting Quandl Data
 
         return tabularResponse;
       }
+        //getClient() returns a Jersey client
+      * protected Client getClient() {
+          return ClientBuilder.newClient();
+        }
