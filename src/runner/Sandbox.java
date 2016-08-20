@@ -11,16 +11,23 @@ import com.jimmoores.quandl.QuandlSession;
 import com.jimmoores.quandl.TabularResult;
 
 import property_reader.PropertyUtils;
+import utils.Requestor;
 
 public class Sandbox {
+
+  static String[] dataSetArray = {"ZILL/N03346_A", "ZILL/N01663_A", "ZILL/N03674_A", "ZILL/N04073_A"};
   
-  public static void main(String[] args) {    
+  public static void main(String[] args) {
+    testTwo();
+    
+  }
+  
+  public static void initialTest() {    
     
     PropertyUtils propertyUtils = new PropertyUtils();
     
     String quandlApi = propertyUtils.getQuandlApi();    
 
-    String[] dataSetArray = {"ZILL/N03346_A", "ZILL/N01663_A", "ZILL/N03674_A", "ZILL/N04073_A"};
     
     for ( int i = 0; i < dataSetArray.length; i++) {
       String set = dataSetArray[i];
@@ -47,9 +54,12 @@ public class Sandbox {
       DecimalFormat df = new DecimalFormat("#.00"); 
       
       System.out.println(df.format(result) + "% change since " + start + " to " + end);
-    }
-    
-    
+    }    
+  }
+  
+  public static void testTwo() {
+    Requestor requestor = new Requestor();
+    requestor.sendRequest(dataSetArray[0]);
   }
   
 }
