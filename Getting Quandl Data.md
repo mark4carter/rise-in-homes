@@ -51,3 +51,41 @@ Getting Quandl Data
       * protected Client getClient() {
           return ClientBuilder.newClient();
         }
+      * WebTarget target = client.target(API_BASE_URL_V1); //Builds a new web resource target
+      * private WebTarget withAuthToken(final WebTarget target) {
+          if (_sessionOptions.getAuthToken() != null) {
+            return target.queryParam(AUTH_TOKEN_PARAM_NAME, _sessionOptions.getAuthToken());
+          } else {
+            return target;
+          }
+        }
+      * public WebTarget appendPathAndQueryParameters(final WebTarget webTarget) {
+          ArgumentChecker.notNull(webTarget, "webTarget");
+          WebTarget resultTarget = webTarget;
+          resultTarget = resultTarget.path(DATASETS_RELATIVE_URL);
+          resultTarget = resultTarget.path(_quandlCode + EXTENSION);
+          if (_startDate != null) {
+            resultTarget = resultTarget.queryParam(START_DATE_PARAM, _startDate.toString());
+          }
+          if (_endDate != null) {
+            resultTarget = resultTarget.queryParam(END_DATE_PARAM, _endDate.toString());
+          }
+          if (_columnIndex != null) {
+            resultTarget = resultTarget.queryParam(COLUMN_INDEX_PARAM, _columnIndex);
+          }
+          if (_frequency != null) {
+            resultTarget = resultTarget.queryParam(FREQUENCY_PARAM, _frequency.getQuandlString());
+          }
+          if (_maxRows != null) {
+            resultTarget = resultTarget.queryParam(MAX_ROWS_PARAM, _maxRows);
+          }
+          if (_transform != null) {
+            resultTarget = resultTarget.queryParam(TRANSFORM_PARAM, _transform.getQuandlString());
+          }
+          if (_sortOrder != null) {
+            resultTarget = resultTarget.queryParam(SORT_ORDER_PARAM, _sortOrder.getQuandlString());
+          }
+          return resultTarget;
+        }
+      * tabularResponse = _sessionOptions.getRESTDataProvider().getTabularResponse(target);
+      * 
