@@ -21,6 +21,12 @@ public class Sandbox {
     testTwo();
     
   }
+
+  
+  public static void testTwo() {
+    Requestor requestor = new Requestor();
+    requestor.sendRequest(dataSetArray[0]);
+  }
   
   public static void initialTest() {    
     
@@ -55,11 +61,6 @@ public class Sandbox {
       
       System.out.println(df.format(result) + "% change since " + start + " to " + end);
     }    
-  }
-  
-  public static void testTwo() {
-    Requestor requestor = new Requestor();
-    requestor.sendRequest(dataSetArray[0]);
   }
   
 }

@@ -1,5 +1,9 @@
 package utils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -24,6 +28,7 @@ public class Requestor {
   private static final String JSON_SUFFIX = ".json";
   
   public void sendRequest(String dataSet) {
+    JSONObject object = null;
     Client client = ClientBuilder.newClient();
     WebTarget target = client.target(API_BASE_URL_V3);
     target = target.queryParam(AUTH_TOKEN_PARAM_NAME, getAuthToken());
@@ -40,7 +45,7 @@ public class Requestor {
       
       JSONTokener tokeniser = new JSONTokener(new InputStreamReader(inputStream));
       try {
-        JSONObject object = new JSONObject(tokeniser);
+        object = new JSONObject(tokeniser);
         //System.out.println(object.toString(4));
         System.out.println(((JSONArray)object.getJSONObject("dataset").get("data")));
       } catch (JSONException jsone) {
@@ -50,12 +55,41 @@ public class Requestor {
       System.out.println("Response code to " + target.getUri() + " was " + response.getStatusInfo());
     }  
     
+    if (object != null) {
+      try {
+        File file = new File("TestFile");
+        file.createNewFile();
+        FileWriter fileWriter = new FileWriter(file);
+        fileWriter.write(object.toString());
+        fileWriter.flush();
+        fileWriter.close();
+      } catch (Exception ex) {
+        ex.printStackTrace();
+      }
+    }
+    
+    readBack();
     
   }
   
   public String getAuthToken() {
     PropertyUtils propertyUtils = new PropertyUtils();    
     return propertyUtils.getQuandlApi();   
+  }
+  
+  public void readBack() {
+    JSONObject readFromFileObj = null;
+    try {
+      JSONTokener tokener = new JSONTokener(new FileReader("TestFile"));
+      readFromFileObj = new JSONObject(tokener);
+      System.out.println(readFromFileObj.toString(4));
+    } catch (FileNotFoundException ex) {
+      // TODO Auto-generated catch block
+      ex.printStackTrace();
+    } catch (Exception ex) {
+      // TODO Auto-generated catch block
+      ex.printStackTrace();
+    }
   }
 
 }
