@@ -57,7 +57,10 @@ public class Requestor {
     
     if (object != null) {
       try {
-        File file = new File("TestFile");
+        File file = new File("test/" + dataSet + "_JSON");
+
+        if (!file.exists())
+            file.mkdirs();
         file.createNewFile();
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(object.toString());
@@ -68,7 +71,7 @@ public class Requestor {
       }
     }
     
-    readBack();
+    readBack(dataSet + "_JSON");
     
   }
   
@@ -77,10 +80,10 @@ public class Requestor {
     return propertyUtils.getQuandlApi();   
   }
   
-  public void readBack() {
+  public void readBack(String fileName) {
     JSONObject readFromFileObj = null;
     try {
-      JSONTokener tokener = new JSONTokener(new FileReader("TestFile"));
+      JSONTokener tokener = new JSONTokener(new FileReader(fileName+'2'));
       readFromFileObj = new JSONObject(tokener);
       System.out.println(readFromFileObj.toString(4));
     } catch (FileNotFoundException ex) {
