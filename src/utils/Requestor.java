@@ -29,25 +29,47 @@ public class Requestor {
   
   public void sendRequest(String dataSet) {
     JSONObject object = null;
+    
+    //Client is the main entry point to the fluent API used to build and 
+    //execute client requests in order to consume responses returned.
     Client client = ClientBuilder.newClient();
+    
+    
+    //The WebTarget interface represents a specific URI you want to invoke on.
     WebTarget target = client.target(API_BASE_URL_V3);
     target = target.queryParam(AUTH_TOKEN_PARAM_NAME, getAuthToken());
     target = target.path(dataSet + JSON_SUFFIX);
+    
+    //Creates a request, but request itself does not create a call until invoked
     Builder requestBuilder = target.request();
-    //System.out.println(target.getUri());
+    
+    //buildGet() creates a GET request
     Response response = requestBuilder.buildGet().invoke();
+    
+    
     if (response.getStatus() == Response.Status.OK.getStatusCode()) {
+      
+      
       InputStream inputStream = response.readEntity(InputStream.class);
       
         //java.util.Scanner s = new java.util.Scanner(inputStream).useDelimiter("\\A");
         //System.out.println( s.hasNext() ? s.next() : "");
       // should we be buffering this?
       
+      
+      //The files in this package implement JSON encoders/decoders in Java.
+      //Package is org.json
       JSONTokener tokeniser = new JSONTokener(new InputStreamReader(inputStream));
+      
       try {
         object = new JSONObject(tokeniser);
-        //System.out.println(object.toString(4));
-        System.out.println(((JSONArray)object.getJSONObject("dataset").get("data")));
+        
+        
+        //System.out.println(object);
+        //toString() prints out JSON in regular JSON format
+        
+        
+        //System.out.println(((JSONArray)object.getJSONObject("dataset").get("data")));
       } catch (JSONException jsone) {
         System.out.println("Problem parsing JSON reply" + jsone);
       }
@@ -57,10 +79,9 @@ public class Requestor {
     
     if (object != null) {
       try {
-        File file = new File("test/" + dataSet + "_JSON");
+        File file = new File(dataSet + "_JSON");
 
-        if (!file.exists())
-            file.mkdirs();
+        file.getParentFile().mkdirs();
         file.createNewFile();
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(object.toString());
@@ -83,7 +104,7 @@ public class Requestor {
   public void readBack(String fileName) {
     JSONObject readFromFileObj = null;
     try {
-      JSONTokener tokener = new JSONTokener(new FileReader(fileName+'2'));
+      JSONTokener tokener = new JSONTokener(new FileReader(fileName));
       readFromFileObj = new JSONObject(tokener);
       System.out.println(readFromFileObj.toString(4));
     } catch (FileNotFoundException ex) {
