@@ -1,0 +1,3 @@
+- Research using Zillow Neighborhood coordinates (http://www.zillow.com/howto/api/neighborhood-boundaries.htm)
+-- How to use ShapeFiles ??  (http://ccarpenterg.github.io/blog/us-census-visualization-with-d3js/)
+------ Converting Shaprefile to GeoJSON (http://www.gdal.org/)
