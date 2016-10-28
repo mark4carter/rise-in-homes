@@ -10,3 +10,5 @@
 ------------ This choropleth displays unemployment rates by US county in 2012 (annual averages). (http://bl.ocks.org/badosa/5652333)
 ------------ Choropleth map of states in the US... venture capital spent in the US in 2012. (https://d3-geomap.github.io/map/choropleth/us-states/)
 ------------ Displays world population data from downloaded from the World Bank databank. (https://d3-geomap.github.io/map/choropleth/world/)
+
+------------ More Choropleth Tutorials (http://leafletjs.com/examples/choropleth/)
