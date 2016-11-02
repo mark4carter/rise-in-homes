@@ -1,6 +1,7 @@
 package runner;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
 
 import org.threeten.bp.LocalDate;
 
@@ -8,10 +9,11 @@ import com.jimmoores.quandl.DataSetRequest;
 import com.jimmoores.quandl.MetaDataRequest;
 import com.jimmoores.quandl.MetaDataResult;
 import com.jimmoores.quandl.QuandlSession;
-import com.jimmoores.quandl.Row;
 import com.jimmoores.quandl.TabularResult;
 
 import property_reader.PropertyUtils;
+import utils.Decoder;
+import utils.GeoJSONAppender;
 import utils.Requestor;
 
 public class Sandbox {
@@ -165,14 +167,27 @@ public class Sandbox {
   };
   
   public static void main(String[] args) {
-    testTwo();
+    //getApiInformation();
     //initialTest();
+    HashMap<String, Integer> neighborhoodValue = printNames();
+    createNewJSON(neighborhoodValue);
   }
 
   
-  public static void testTwo() {
+  public static void getApiInformation() {
     Requestor requestor = new Requestor();
-    requestor.sendRequest(dataSetArray[0]);
+    
+    for ( int i = 0; i < fullDataSetArray.length; i++) {
+      requestor.sendRequest(fullDataSetArray[i]);      
+    }
+  }
+  
+  public static HashMap<String, Integer> printNames() {
+    return Decoder.readAllBack("ZILL");
+  }
+  
+  public static void createNewJSON(HashMap<String, Integer> neigborhoodValue) {
+    GeoJSONAppender.appendToJSON(neigborhoodValue);
   }
   
   public static void initialTest() {    
