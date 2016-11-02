@@ -79,9 +79,9 @@ public class Requestor {
     
     if (object != null) {
       try {
-        File file = new File(dataSet + "_JSON");
+        File file = new File("state/" + dataSet + ".json");
 
-        file.getParentFile().mkdirs();
+        if (file.getParentFile() != null) file.getParentFile().mkdirs();
         file.createNewFile();
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(object.toString());

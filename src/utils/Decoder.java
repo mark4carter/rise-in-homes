@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
@@ -77,6 +79,30 @@ public class Decoder {
     
     return readFromFileObj;
   }
+  
+  public static ArrayList<String> getArrayListOfDataSetCodes(JSONObject json) {
+    
+    ArrayList<String> arrayOfDataSetCodes = new ArrayList<String>();
 
+    try {
+      
+      JSONArray datasetsArray = json.getJSONArray("datasets");
+      
+      for ( int i = 0; i < datasetsArray.length(); i++ ) {
+        String datasetString;
+          datasetString = datasetsArray.getJSONObject(i).getString("database_code") + "/";
+          
+          datasetString += datasetsArray.getJSONObject(i).getString("dataset_code");
+          arrayOfDataSetCodes.add(datasetString);
+          System.out.println(datasetString);
+      }
+    
+    } catch (JSONException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
+    return arrayOfDataSetCodes;
+  }
 
 }

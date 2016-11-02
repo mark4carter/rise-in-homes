@@ -1,8 +1,10 @@
 package runner;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.JSONObject;
 import org.threeten.bp.LocalDate;
 
 import com.jimmoores.quandl.DataSetRequest;
@@ -168,9 +170,12 @@ public class Sandbox {
   
   public static void main(String[] args) {
     //getApiInformation();
+    getApiInformationFromFile("json_files/state_all_homes.json");
     //initialTest();
-    HashMap<String, Integer> neighborhoodValue = printNames();
-    createNewJSON(neighborhoodValue);
+    //HashMap<String, Integer> neighborhoodValue = printNames();
+    //createNewJSON(neighborhoodValue);
+    
+    
   }
 
   
@@ -179,6 +184,20 @@ public class Sandbox {
     
     for ( int i = 0; i < fullDataSetArray.length; i++) {
       requestor.sendRequest(fullDataSetArray[i]);      
+    }
+  }
+  
+  public static void getApiInformationFromFile(String fileName) {
+    JSONObject json = Decoder.returnJSONFromFile(fileName);
+    ArrayList<String> dataArrayList = Decoder.getArrayListOfDataSetCodes(json);
+    getApiInformationFrom(dataArrayList);
+  }
+  
+  public static void getApiInformationFrom(ArrayList<String> dataArrayList) {
+    Requestor requestor = new Requestor();
+    
+    for ( int i = 0; i < dataArrayList.size(); i++) {
+      requestor.sendRequest(dataArrayList.get(i));      
     }
   }
   
