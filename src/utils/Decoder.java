@@ -48,6 +48,44 @@ public class Decoder {
     return neighborhoodValue;    
   }
   
+  public static HashMap<String, Integer> readStatesAllBack(String folderName) {
+    
+    ArrayList<String> fileList = new ArrayList<String>();
+    HashMap<String, Integer> neighborhoodValue = new HashMap<String, Integer>();
+    
+    final File folder = new File(folderName);
+    fileList = listFilesForFolder(folder);    
+    
+    for (int i = 0; i < fileList.size(); i++ ) {
+
+      JSONObject readFromFileObj = null;
+      try {
+        JSONTokener tokener = new JSONTokener(new FileReader(folderName + "/" + fileList.get(i)));
+        readFromFileObj = new JSONObject(tokener);
+        
+        String fullString = (String)readFromFileObj.getJSONObject("dataset").get("description");
+        System.out.println(fullString);
+        fullString = fullString.split("all homes within the state of ")[1].split(". This data is calculated by Zillow")[0].split(", ")[1];
+        System.out.println(fullString);
+        String valueString = readFromFileObj.getJSONObject("dataset").getJSONArray("data").getJSONArray(0).getString(1);
+        System.out.println(valueString);
+        neighborhoodValue.put(fullString, Integer.parseInt(valueString));
+      } catch (FileNotFoundException ex) {
+        // TODO Auto-generated catch block
+        ex.printStackTrace();
+      } catch (Exception ex) {
+        // TODO Auto-generated catch block
+        ex.printStackTrace();
+      }
+      
+    }
+    System.out.println(neighborhoodValue.size());
+    return neighborhoodValue;    
+  }
+  
+  
+  
+  
   public static ArrayList<String> listFilesForFolder(final File folder) {
     
     ArrayList<String> fileList = new ArrayList<String>();

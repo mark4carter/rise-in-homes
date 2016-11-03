@@ -12,3 +12,6 @@
 ------------ Displays world population data from downloaded from the World Bank databank. (https://d3-geomap.github.io/map/choropleth/world/)
 
 ------------ More Choropleth Tutorials (http://leafletjs.com/examples/choropleth/)
+
+
+http-server -p 8008 &

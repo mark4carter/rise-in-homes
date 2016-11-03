@@ -1,9 +1,11 @@
 package runner;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.threeten.bp.LocalDate;
 
@@ -16,6 +18,7 @@ import com.jimmoores.quandl.TabularResult;
 import property_reader.PropertyUtils;
 import utils.Decoder;
 import utils.GeoJSONAppender;
+import utils.JSONCreator;
 import utils.Requestor;
 
 public class Sandbox {
@@ -168,13 +171,15 @@ public class Sandbox {
       "ZILL/N03808_MVSF"
   };
   
-  public static void main(String[] args) {
+  public static void main(String[] args) throws JSONException, IOException {
     //getApiInformation();
-    getApiInformationFromFile("json_files/state_all_homes.json");
+    //getApiInformationFromFile("json_files/state_all_homes.json");
     //initialTest();
     //HashMap<String, Integer> neighborhoodValue = printNames();
     //createNewJSON(neighborhoodValue);
-    
+    HashMap<String, Integer> stateValue = printNames("state/ZILL");
+    JSONObject stateJSON = JSONCreator.createJSONFromHashMap(stateValue);
+    JSONCreator.writeJSONTo(stateJSON, "state/ZILL/state-ds.json");
     
   }
 
@@ -203,6 +208,10 @@ public class Sandbox {
   
   public static HashMap<String, Integer> printNames() {
     return Decoder.readAllBack("ZILL");
+  }
+  
+  public static HashMap<String, Integer> printNames(String folderName) {
+    return Decoder.readStatesAllBack(folderName);
   }
   
   public static void createNewJSON(HashMap<String, Integer> neigborhoodValue) {
