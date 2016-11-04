@@ -3,6 +3,7 @@ package runner;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import org.json.JSONException;
@@ -184,26 +185,29 @@ public class Sandbox {
   }
 
   
-  public static void getApiInformation() {
-    Requestor requestor = new Requestor();
+  public static ArrayList<JSONObject> getApiInformation() {
     
-    for ( int i = 0; i < fullDataSetArray.length; i++) {
-      requestor.sendRequest(fullDataSetArray[i]);      
-    }
+    ArrayList<String> wordList = new ArrayList<String>(Arrays.asList(fullDataSetArray));      
+    return getApiInformationFrom(wordList);
+    
   }
   
-  public static void getApiInformationFromFile(String fileName) {
+  public static ArrayList<JSONObject> getApiInformationFromFile(String fileName) {
     JSONObject json = Decoder.returnJSONFromFile(fileName);
     ArrayList<String> dataArrayList = Decoder.getArrayListOfDataSetCodes(json);
-    getApiInformationFrom(dataArrayList);
+    return getApiInformationFrom(dataArrayList);
   }
   
-  public static void getApiInformationFrom(ArrayList<String> dataArrayList) {
+  public static ArrayList<JSONObject> getApiInformationFrom(ArrayList<String> dataArrayList) {
+    ArrayList<JSONObject> listOfJSONReturns = new ArrayList<JSONObject>();    
+    
     Requestor requestor = new Requestor();
     
     for ( int i = 0; i < dataArrayList.size(); i++) {
-      requestor.sendRequest(dataArrayList.get(i));      
+      listOfJSONReturns.add(requestor.sendRequest(dataArrayList.get(i)));      
     }
+    
+    return listOfJSONReturns;
   }
   
   public static HashMap<String, Integer> printNames() {

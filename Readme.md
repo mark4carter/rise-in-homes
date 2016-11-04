@@ -11,7 +11,8 @@
 ------------ Choropleth map of states in the US... venture capital spent in the US in 2012. (https://d3-geomap.github.io/map/choropleth/us-states/)
 ------------ Displays world population data from downloaded from the World Bank databank. (https://d3-geomap.github.io/map/choropleth/world/)
 
------------- More Choropleth Tutorials (http://leafletjs.com/examples/choropleth/)
+------------ More Choropleth Tutorials (http://leafletjs.com/examples/choropleth
 
+http://bl.ocks.org/michellechandra/0b2ce4923dc9b5809922
 
 http-server -p 8008 &
