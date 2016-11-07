@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -70,6 +71,22 @@ public class Requestor {
   public String getAuthToken() {
     PropertyUtils propertyUtils = new PropertyUtils();    
     return propertyUtils.getQuandlApi();   
+  }
+  
+  public ArrayList<JSONObject> getApiInformationFromFile(String fileName) {
+    JSONObject json = Decoder.returnJSONFromFile(fileName);
+    ArrayList<String> dataArrayList = Decoder.getArrayListOfDataSetCodes(json);
+    return getApiInformationFrom(dataArrayList);
+  }
+  
+  public ArrayList<JSONObject> getApiInformationFrom(ArrayList<String> dataArrayList) {
+    ArrayList<JSONObject> listOfJSONReturns = new ArrayList<JSONObject>();
+    
+    for ( int i = 0; i < dataArrayList.size(); i++) {
+      listOfJSONReturns.add(sendRequest(dataArrayList.get(i)));      
+    }
+    
+    return listOfJSONReturns;
   }
   
   public void readBack(String fileName) {

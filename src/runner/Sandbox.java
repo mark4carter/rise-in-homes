@@ -185,29 +185,11 @@ public class Sandbox {
   }
 
   
-  public static ArrayList<JSONObject> getApiInformation() {
-    
-    ArrayList<String> wordList = new ArrayList<String>(Arrays.asList(fullDataSetArray));      
-    return getApiInformationFrom(wordList);
-    
-  }
-  
-  public static ArrayList<JSONObject> getApiInformationFromFile(String fileName) {
-    JSONObject json = Decoder.returnJSONFromFile(fileName);
-    ArrayList<String> dataArrayList = Decoder.getArrayListOfDataSetCodes(json);
-    return getApiInformationFrom(dataArrayList);
-  }
-  
-  public static ArrayList<JSONObject> getApiInformationFrom(ArrayList<String> dataArrayList) {
-    ArrayList<JSONObject> listOfJSONReturns = new ArrayList<JSONObject>();    
-    
+  public static ArrayList<JSONObject> getApiInformation() {    
     Requestor requestor = new Requestor();
     
-    for ( int i = 0; i < dataArrayList.size(); i++) {
-      listOfJSONReturns.add(requestor.sendRequest(dataArrayList.get(i)));      
-    }
-    
-    return listOfJSONReturns;
+    ArrayList<String> wordList = new ArrayList<String>(Arrays.asList(fullDataSetArray));      
+    return requestor.getApiInformationFrom(wordList);    
   }
   
   public static HashMap<String, Integer> printNames() {

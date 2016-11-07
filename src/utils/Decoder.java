@@ -13,6 +13,15 @@ import org.json.JSONTokener;
 
 public class Decoder {
   
+  public static HashMap<String, Integer> parseAllHomesByNeighborhood(String folderName) {
+    
+    ArrayList<String> fileList = new ArrayList<String>();
+    HashMap<String, Integer> neighborhoodValue = new HashMap<String, Integer>();
+    
+    System.out.println(neighborhoodValue.size());
+    return neighborhoodValue;     
+  }
+  
   public static HashMap<String, Integer> readAllBack(String folderName) {
     
     ArrayList<String> fileList = new ArrayList<String>();
@@ -47,6 +56,8 @@ public class Decoder {
     System.out.println(neighborhoodValue.size());
     return neighborhoodValue;    
   }
+  
+  
   
   public static HashMap<String, Integer> readStatesAllBack(String folderName) {
     
