@@ -13,7 +13,7 @@ public class DataSetFromSearchWriter {
   JSONObject jsonSearchObject;
   
   public DataSetFromSearchWriter(String fileName) {
-    jsonSearchObject = Decoder.returnJSONFromFile(fileName);
+    jsonSearchObject = JSONUtils.returnJSONFromFile(fileName);
   }
   
   public JSONObject searchInNameFor(String searchString) throws JSONException {

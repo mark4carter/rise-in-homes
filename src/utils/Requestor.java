@@ -1,7 +1,5 @@
 package utils;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -74,12 +72,12 @@ public class Requestor {
   }
   
   public ArrayList<JSONObject> getApiInformationFromFile(String fileName) {
-    JSONObject json = Decoder.returnJSONFromFile(fileName);
-    ArrayList<String> dataArrayList = Decoder.getArrayListOfDataSetCodes(json);
-    return getApiInformationFrom(dataArrayList);
+    JSONObject json = JSONUtils.returnJSONFromFile(fileName);
+    ArrayList<String> dataArrayList = ZillowJSONParser.getArrayListOfDataSetCodes(json);
+    return getApiInformationFromArrayList(dataArrayList);
   }
   
-  public ArrayList<JSONObject> getApiInformationFrom(ArrayList<String> dataArrayList) {
+  public ArrayList<JSONObject> getApiInformationFromArrayList(ArrayList<String> dataArrayList) {
     ArrayList<JSONObject> listOfJSONReturns = new ArrayList<JSONObject>();
     
     for ( int i = 0; i < dataArrayList.size(); i++) {
@@ -88,20 +86,4 @@ public class Requestor {
     
     return listOfJSONReturns;
   }
-  
-  public void readBack(String fileName) {
-    JSONObject readFromFileObj = null;
-    try {
-      JSONTokener tokener = new JSONTokener(new FileReader(fileName));
-      readFromFileObj = new JSONObject(tokener);
-      System.out.println(readFromFileObj.toString(4));
-    } catch (FileNotFoundException ex) {
-      // TODO Auto-generated catch block
-      ex.printStackTrace();
-    } catch (Exception ex) {
-      // TODO Auto-generated catch block
-      ex.printStackTrace();
-    }
-  }
-
 }

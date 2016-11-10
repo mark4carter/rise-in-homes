@@ -33,8 +33,6 @@ public class JSONCreator {
     
   }
   
-
-  
   public static void writeJSONTo(JSONObject json, String fileName) throws IOException {
     File file = new File(fileName);
 

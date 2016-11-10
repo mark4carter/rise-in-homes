@@ -1,7 +1,6 @@
 package utils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,18 +10,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-public class Decoder {
+public class ZillowJSONParser {
   
-  public static HashMap<String, Integer> parseAllHomesByNeighborhood(String folderName) {
-    
-    ArrayList<String> fileList = new ArrayList<String>();
-    HashMap<String, Integer> neighborhoodValue = new HashMap<String, Integer>();
-    
-    System.out.println(neighborhoodValue.size());
-    return neighborhoodValue;     
-  }
-  
-  public static HashMap<String, Integer> readAllBack(String folderName) {
+  public static HashMap<String, Integer> readAllHomeValueByNeighborhood(String folderName) {
     
     ArrayList<String> fileList = new ArrayList<String>();
     HashMap<String, Integer> neighborhoodValue = new HashMap<String, Integer>();
@@ -44,11 +34,7 @@ public class Decoder {
         String valueString = readFromFileObj.getJSONObject("dataset").getJSONArray("data").getJSONArray(0).getString(1);
         System.out.println(valueString);
         neighborhoodValue.put(fullString, Integer.parseInt(valueString));
-      } catch (FileNotFoundException ex) {
-        // TODO Auto-generated catch block
-        ex.printStackTrace();
       } catch (Exception ex) {
-        // TODO Auto-generated catch block
         ex.printStackTrace();
       }
       
@@ -81,11 +67,7 @@ public class Decoder {
         String valueString = readFromFileObj.getJSONObject("dataset").getJSONArray("data").getJSONArray(0).getString(1);
         System.out.println(valueString);
         neighborhoodValue.put(fullString, Integer.parseInt(valueString));
-      } catch (FileNotFoundException ex) {
-        // TODO Auto-generated catch block
-        ex.printStackTrace();
       } catch (Exception ex) {
-        // TODO Auto-generated catch block
         ex.printStackTrace();
       }
       
@@ -93,14 +75,10 @@ public class Decoder {
     System.out.println(neighborhoodValue.size());
     return neighborhoodValue;    
   }
-  
-  
-  
-  
-  public static ArrayList<String> listFilesForFolder(final File folder) {
     
-    ArrayList<String> fileList = new ArrayList<String>();
-    
+  
+  public static ArrayList<String> listFilesForFolder(final File folder) {    
+    ArrayList<String> fileList = new ArrayList<String>();    
     
     for (final File fileEntry : folder.listFiles()) {
         if (fileEntry.isDirectory()) {
@@ -111,22 +89,6 @@ public class Decoder {
     }
     
     return fileList;
-  }
-  
-  public static JSONObject returnJSONFromFile(String fileName) {
-    JSONObject readFromFileObj = null;
-    try {
-      JSONTokener tokener = new JSONTokener(new FileReader(fileName));
-      readFromFileObj = new JSONObject(tokener);
-    } catch (FileNotFoundException ex) {
-      // TODO Auto-generated catch block
-      ex.printStackTrace();
-    } catch (Exception ex) {
-      // TODO Auto-generated catch block
-      ex.printStackTrace();
-    }
-    
-    return readFromFileObj;
   }
   
   public static ArrayList<String> getArrayListOfDataSetCodes(JSONObject json) {
@@ -147,7 +109,6 @@ public class Decoder {
       }
     
     } catch (JSONException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
     
