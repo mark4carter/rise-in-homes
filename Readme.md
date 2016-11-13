@@ -1,6 +1,6 @@
 ## Path
 
-[] - Research using Zillow Neighborhood coordinates (http://www.zillow.com/howto/api/neighborhood-boundaries.htm)
+- [ ] - Research using Zillow Neighborhood coordinates (http://www.zillow.com/howto/api/neighborhood-boundaries.htm)
 - [ ] How to use ShapeFiles ??  (http://ccarpenterg.github.io/blog/us-census-visualization-with-d3js/)
 - [ ] Converting Shaprefile to GeoJSON (http://www.gdal.org/)
 - [ ] ------ Online Converter (http://mapshaper.org/)
@@ -18,3 +18,17 @@
 - [ ] http://bl.ocks.org/michellechandra/0b2ce4923dc9b5809922
 
 - [ ] http-server -p 8008 &
+
+### Docker
+
+- [ ] https://www.3pillarglobal.com/insights/building-a-microservice-architecture-with-spring-boot-and-docker-part-i  <-- Docker Tutorials
+
+- [ ] Heroku and DOCKER -- https://devcenter.heroku.com/articles/local-development-with-docker-compose
+
+- [ ] May need to research **Creating a Docker Group** and **Configure Docker to start on boot** "https://docs.docker.com/engine/installation/linux/ubuntulinux/"
+
+- [ ] Learn by examples -- https://docs.docker.com/engine/tutorials/usingdocker/
+
+- [ ] Mount a host directory as a data volume
+
+- [ ] Postgres -- https://hub.docker.com/_/postgres/
