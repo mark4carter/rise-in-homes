@@ -26,3 +26,5 @@ config.properties
 # Quandl Data #
 ZILL/
 
+# application properties #
+application.properties
