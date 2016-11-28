@@ -35,4 +35,4 @@
 
 ### JHipster
 
-- [ ] https://blog.heroku.com/bootstrapping_your_microservices_architecture_with_jhipster_and_spring
+- [ ] ~~https://blog.heroku.com/bootstrapping_your_microservices_architecture_with_jhipster_and_spring~~
