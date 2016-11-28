@@ -32,3 +32,7 @@
 - [ ] Mount a host directory as a data volume
 
 - [ ] Postgres -- https://hub.docker.com/_/postgres/
+
+### JHipster
+
+- [ ] https://blog.heroku.com/bootstrapping_your_microservices_architecture_with_jhipster_and_spring
