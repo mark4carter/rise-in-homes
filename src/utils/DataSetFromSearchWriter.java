@@ -51,7 +51,7 @@ public class DataSetFromSearchWriter {
   }
   
   
-  
+  /*
   public static void main(String[] args) {
     DataSetFromSearchWriter ds = new DataSetFromSearchWriter("json_files/QuandlStateSearch.json");
     JSONObject searchResults = new JSONObject();
@@ -65,5 +65,5 @@ public class DataSetFromSearchWriter {
     }
     
     
-  }
+  }*/
 }

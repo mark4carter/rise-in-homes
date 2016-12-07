@@ -25,6 +25,7 @@ import utils.Requestor;
 
 public class Sandbox {
   
+  /*
   public static void main(String[] args) throws JSONException, IOException {
     //getApiInformation();
     //getApiInformationFromFile("json_files/state_all_homes.json");
@@ -35,7 +36,7 @@ public class Sandbox {
     JSONObject stateJSON = JSONCreator.createJSONFromHashMap(stateValue);
     JSONCreator.writeJSONTo(stateJSON, "state/ZILL/state-ds.json");
     
-  }
+  }*/
 
   
   public static ArrayList<JSONObject> getApiInformation() {    

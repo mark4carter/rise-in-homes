@@ -33,6 +33,10 @@
 
 - [ ] Postgres -- https://hub.docker.com/_/postgres/
 
+- [ ] use " mvn clean package "
+
+- [ ] turn spring boot into container -- http://www.3pillarglobal.com/insights/building-a-microservice-architecture-with-spring-boot-and-docker-part-iii
+
 ### JHipster
 
 - [ ] ~~https://blog.heroku.com/bootstrapping_your_microservices_architecture_with_jhipster_and_spring~~
