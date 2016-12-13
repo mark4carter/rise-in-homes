@@ -1,3 +1,13 @@
+## To Run
+
+- Run the following commands to build the app.
+
+```shell
+$ mvn clean package
+$ java -jar ./target/rise-in-homes-0.0.1-SNAPSHOT.jar 
+```
+> Then open `http://localhost:8080`
+
 ## Path
 
 - [ ] - Research using Zillow Neighborhood coordinates (http://www.zillow.com/howto/api/neighborhood-boundaries.htm)
