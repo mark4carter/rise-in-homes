@@ -5,6 +5,8 @@
 ```shell
 $ mvn clean package
 $ java -jar ./target/rise-in-homes-0.0.1-SNAPSHOT.jar 
+$ docker build -t rise-in-home-.0.0.1 -f ./dockerbuild/Dockerfile .
+
 ```
 > Then open `http://localhost:8080`
 
@@ -31,21 +33,23 @@ $ java -jar ./target/rise-in-homes-0.0.1-SNAPSHOT.jar
 
 ### Docker
 
-- [ ] https://www.3pillarglobal.com/insights/building-a-microservice-architecture-with-spring-boot-and-docker-part-i  <-- Docker Tutorials
+- [X] https://www.3pillarglobal.com/insights/building-a-microservice-architecture-with-spring-boot-and-docker-part-i  <-- Docker Tutorials
 
 - [ ] Heroku and DOCKER -- https://devcenter.heroku.com/articles/local-development-with-docker-compose
 
 - [ ] May need to research **Creating a Docker Group** and **Configure Docker to start on boot** "https://docs.docker.com/engine/installation/linux/ubuntulinux/"
 
-- [ ] Learn by examples -- https://docs.docker.com/engine/tutorials/usingdocker/
+- [X] Learn by examples -- https://docs.docker.com/engine/tutorials/usingdocker/
 
 - [ ] Mount a host directory as a data volume
 
-- [ ] Postgres -- https://hub.docker.com/_/postgres/
+- [X] Postgres -- https://hub.docker.com/_/postgres/
 
-- [ ] use " mvn clean package "
+- [X] use " mvn clean package "
 
 - [ ] turn spring boot into container -- http://www.3pillarglobal.com/insights/building-a-microservice-architecture-with-spring-boot-and-docker-part-iii
+
+- [ ] Dockerfile created but receive java error on load "org.postgresql.util.PSQLException: Connection to localhost:32768 refused."
 
 ### JHipster
 
