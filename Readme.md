@@ -6,6 +6,7 @@
 $ mvn clean package
 $ java -jar ./target/rise-in-homes-0.0.1-SNAPSHOT.jar 
 $ docker build -t rise-in-home-.0.0.1 -f ./dockerbuild/Dockerfile .
+$ docker run -P -d --name rise-in-homesV0 rise-in-homes-0.0.1
 
 ```
 > Then open `http://localhost:8080`
@@ -49,7 +50,7 @@ $ docker build -t rise-in-home-.0.0.1 -f ./dockerbuild/Dockerfile .
 
 - [ ] turn spring boot into container -- http://www.3pillarglobal.com/insights/building-a-microservice-architecture-with-spring-boot-and-docker-part-iii
 
-- [ ] Dockerfile created but receive java error on load "org.postgresql.util.PSQLException: Connection to localhost:32768 refused."
+- [X] *SOLVED* Dockerfile created but receive java error on load "org.postgresql.util.PSQLException: Connection to localhost:32768 refused."
 
 ### JHipster
 
